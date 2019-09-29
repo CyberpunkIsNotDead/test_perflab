@@ -1,7 +1,6 @@
 from sys import argv, exit
 # not using numpy because i don't know if it's allowed or not;
-# not using decimal for proper rounding,
-# using function from https://stackoverflow.com/a/38239574 instead
+# not using decimal for proper rounding
 
 path = argv
 lines = []
@@ -18,7 +17,7 @@ def percentile(num, data):
         except IndexError:
             exit('can\'t count percentile from 1 number!')
 
-def roundTraditional(val,digits):
+def round_traditional(val,digits):
     return round(val+10**(-len(str(val))-1), digits)
 
 def median(data):
@@ -51,13 +50,13 @@ try:
             lines.append(int(line.rstrip()))
     lines.sort()
     # there are different ways to calculate percentile with different results
-    print("{:.2f}".format(roundTraditional(percentile(90, lines), 2)))
-    # print("{:.2f}".format(roundTraditional(percentile(50, lines), 2))) 
+    print("{:.2f}".format(round_traditional(percentile(90, lines), 2)))
+    # print("{:.2f}".format(round_traditional(percentile(50, lines), 2))) 
     # median can be calculated as 50th percentile
     print("{:.2f}".format(median(lines)))
     print("{:.2f}".format(max_num(lines)))
     print("{:.2f}".format(min_num(lines)))
-    print("{:.2f}".format(roundTraditional(avg_num(lines), 2)))
+    print("{:.2f}".format(round_traditional(avg_num(lines), 2)))
 
 except IndexError:
     print('no file was passed') # need proper way to check if no args passed
